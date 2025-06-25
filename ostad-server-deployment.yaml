@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-server
+  namespace: sady
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ostad-server
+  template:
+    metadata:
+      labels:
+        app: ostad-server
+    spec:
+      containers:
+        - name: ostad-server
+          image: sadyplabon/ostad-server:latest
+          ports:
+            - containerPort: 5050
+          env:
+            - name: MONGO_URL
+              value: mongodb://ostad:ostad@mongo-service:27017/ostad_db
+

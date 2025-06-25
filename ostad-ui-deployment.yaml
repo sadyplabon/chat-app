@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-ui
+  namespace: sady
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ostad-ui
+  template:
+    metadata:
+      labels:
+        app: ostad-ui
+    spec:
+      containers:
+        - name: ostad-ui
+          image: sadyplabon/ostad-ui:latest
+          ports:
+            - containerPort: 5173
+
